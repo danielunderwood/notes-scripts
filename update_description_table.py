@@ -12,13 +12,15 @@ README = HERE / "README.md"
 
 
 def get_current_files() -> list[Path]:
-    output = run(["git", "ls-tree", "-r", "--name-only", "HEAD"],
-                 capture_output=True)
+    output = run(["git", "ls-tree", "-r", "--name-only", "HEAD"], capture_output=True)
     if output.returncode != 0:
-        print(
-            f"Failed to execute command:\n:{output.stderr.decode()}", file=sys.stdout)
+        print(f"Failed to execute command:\n:{output.stderr.decode()}", file=sys.stdout)
         exit(output.returncode)
-    return [HERE / filename for filename in output.stdout.decode().split() if filename.endswith(".py")]
+    return [
+        HERE / filename
+        for filename in output.stdout.decode().split()
+        if filename.endswith(".py")
+    ]
 
 
 def get_insert_start_end() -> tuple[int, int, list[str]]:
@@ -47,19 +49,23 @@ def get_docstring(filename: Path) -> str:
 if __name__ == "__main__":
     script_files = get_current_files()
     print(
-        f"Updating description for {', '.join([str(f.relative_to(HERE)) for f in script_files])}")
+        f"Updating description for {', '.join([str(f.relative_to(HERE)) for f in script_files])}"
+    )
     start, end, lines = get_insert_start_end()
     # Drop any current lines that are tables
-    lines = lines[:start + 1] + lines[end:]
+    lines = lines[: start + 1] + lines[end:]
     rows = [(file.name, get_docstring(file)) for file in script_files]
-    name_width = max(len('File'), max(len(name) for name, _ in rows))
-    docstring_width = max(len('Description'), max(
-        len(docstring) for _, docstring in rows))
+    name_width = max(len("File"), max(len(name) for name, _ in rows))
+    docstring_width = max(
+        len("Description"), max(len(docstring) for _, docstring in rows)
+    )
     row_strings = [
         f"| {'Name':<{name_width}} | {'Description':<{docstring_width}} |",
         f"| {'-' * (name_width)} | {'-' * (docstring_width)}",
-
-        *[f"| {name:<{name_width}} | {docstring:<{docstring_width}} |" for name, docstring in rows]
+        *[
+            f"| {name:<{name_width}} | {docstring:<{docstring_width}} |"
+            for name, docstring in rows
+        ],
     ]
     print(f"Updating table from lines {start} to {end}")
     for i, line in enumerate(row_strings):

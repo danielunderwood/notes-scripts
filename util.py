@@ -10,12 +10,14 @@ import requests
 
 NOTES_ROOT = Path(__file__).parents[1]
 
+
 def git_move(source, dest):
     return subprocess.run(["git", "mv", source, dest], capture_output=True)
 
 
 def git_rm(file):
     return subprocess.run(["git", "rm", file], capture_output=True)
+
 
 def download_file(url, output):
     if not isinstance(output, Path):
@@ -40,7 +42,6 @@ def download_file(url, output):
                 f.write(chunk)
 
     return output_file
-
 
 
 def recursive_file_generator(p: Path = NOTES_ROOT, types=[".md"]):

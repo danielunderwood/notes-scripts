@@ -9,7 +9,7 @@ from pathlib import Path
 from util import git_rm, recursive_file_generator
 
 parser = argparse.ArgumentParser()
-parser.add_argument('--rm', action='store_true', help='Remove empty files')
+parser.add_argument("--rm", action="store_true", help="Remove empty files")
 
 args = parser.parse_args()
 empty = []
@@ -20,7 +20,7 @@ for file in recursive_file_generator(notes_path):
 
 for e in empty:
     if args.rm:
-        print(f'Removing {e.relative_to(notes_path)}')
+        print(f"Removing {e.relative_to(notes_path)}")
         git_rm(e.relative_to(notes_path))
     else:
         print(e.relative_to(notes_path))

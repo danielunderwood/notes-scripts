@@ -18,7 +18,7 @@ for file in notes_path.iterdir():
             if not path.exists():
                 path.mkdir(parents=True)
             note_path = path / parsed.strftime("%d.md")
-            print(f'{str(file)} -> {str(note_path)}')
+            print(f"{str(file)} -> {str(note_path)}")
             print(git_move(str(file), note_path))
         except Exception as e:
             # print(e)

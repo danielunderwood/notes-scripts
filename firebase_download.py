@@ -20,7 +20,9 @@ for file in recursive_file_generator():
     if matches := firebase_re.findall(text):
         mappings = {}
         for match in matches:
-            mappings[match] = str(download_file(match, export_path).relative_to(NOTES_ROOT))
+            mappings[match] = str(
+                download_file(match, export_path).relative_to(NOTES_ROOT)
+            )
 
         print(f"Replacing {len(mappings)} links in {file.name}")
         for old, new in mappings.items():

@@ -29,9 +29,9 @@ for file in recursive_file_generator(notes_path):
                     for i, x in enumerate(p):
                         maxes[i] = max(maxes[i], len(x))
                 for p in parts:
-                    if set(p[1]) == {'-'}:
-                        spaced = ['-' * maxes[i] for i, _ in enumerate(p)]
+                    if set(p[1]) == {"-"}:
+                        spaced = ["-" * maxes[i] for i, _ in enumerate(p)]
                     else:
-                        spaced = [f'{x.strip():<{maxes[i]}s}' for i, x in enumerate(p)]
-                    print(' | '.join(spaced).strip())
+                        spaced = [f"{x.strip():<{maxes[i]}s}" for i, x in enumerate(p)]
+                    print(" | ".join(spaced).strip())
                 table = []
