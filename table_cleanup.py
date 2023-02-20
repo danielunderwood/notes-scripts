@@ -1,3 +1,7 @@
+"""
+Cleans up tables in markdown files to have proper spacing
+"""
+
 import re
 from collections import defaultdict
 from pathlib import Path

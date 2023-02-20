@@ -1,3 +1,7 @@
+"""
+Script that generates docs table
+"""
+
 import ast
 import sys
 from pathlib import Path

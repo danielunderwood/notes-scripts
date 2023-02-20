@@ -1,3 +1,7 @@
+"""
+Imports notes from Standard Notes and converts tags to YAML frontmatter
+"""
+
 import argparse
 import json
 import re

@@ -1,3 +1,7 @@
+"""
+Common utilities to use in scripts, such as enumerating all notes
+"""
+
 import re
 import subprocess
 from pathlib import Path

@@ -1,3 +1,7 @@
+"""
+Lists and optionally removes any empty notes (or other files)
+"""
+
 from argparse import ArgumentParser
 import argparse
 from pathlib import Path
