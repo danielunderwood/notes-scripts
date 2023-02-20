@@ -32,6 +32,10 @@ def get_insert_start_end() -> tuple[int, int, list[str]]:
 
         lines.append(line)
 
+    if start is None or end is None:
+        print("Error: could not find start and end of table", file=sys.stderr)
+        exit(1)
+
     return start, end, lines
 
 
